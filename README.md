@@ -11,7 +11,7 @@ Runs on Windows PowerShell, CMD, macOS, and Linux.
 
 ## 🛠 Installation
 ```bash
-git clone https://github.com/YOUR_USERNAME/paulify-os.git
+git clone https://github.com/panie18/paulify-os.git
 cd paulify-os
 python main.py
 ```
