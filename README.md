@@ -4,14 +4,14 @@ A terminal-based command-line OS simulation written in Python.
 Runs on Windows PowerShell, CMD, macOS, and Linux.
 
 ## ✅ Features
-- Virtual filesystem
-- Command prompt with useful commands
-- Easily extendable
+- Virtual filesystem (folders + files)
+- `ls`, `cd`, `mkdir`, `touch`, `cat`, `write`, `echo`
+- `clear` screen, `exit`, and help
 - Safe: no changes to your real system
 
 ## 🛠 Installation
 ```bash
-git clone https://github.com/panie18/paulify-os.git
+git clone https://github.com/YOUR_USERNAME/paulify-os.git
 cd paulify-os
 python main.py
 ```

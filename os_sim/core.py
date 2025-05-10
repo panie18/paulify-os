@@ -2,9 +2,8 @@ import os
 from os_sim.commands import handle_command, get_prompt
 
 def run_shell():
-    print("Paulify OS Simulation Shell v1.0")
-    print("Type 'help' to see available commands. Type 'exit' to quit.
-")
+    print("Paulify OS Simulation Shell v1.1")
+    print("Type 'help' to see available commands. Type 'exit' to quit.\n")
 
     cwd = "/"
     while True:
