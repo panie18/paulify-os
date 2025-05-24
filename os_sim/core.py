@@ -1,23 +1,54 @@
 import os
-from os_sim.commands import handle_command, get_prompt
+import time
+from .commands import handle_command, handle_music_commands, handle_recovery
+
+
+def intro_tour():
+    cat = r"""
+        |\---/|
+        | o_o |
+         \_^_/
+    Hi, ich bin Kitty, dein Guide! 🐱
+
+    Ich zeige dir kurz, was du hier tun kannst:
+    - 'help' für alle Befehle
+    - 'tictactoe' zum Spielen
+    - 'fortune', 'cow', 'guess' für Spaß
+    - 'play', 'pause', 'stop' für Musik
+    - 'login', 'resetpass' für Benutzerkonten
+    - 'calc', 'translate', 'define', 'learn' zum Lernen
+    - 'todo', 'notes' und 'calendar' für Alltag
+    - 'shutdown' und 'log' für System
+    - und vieles mehr!
+
+    Viel Spaß mit Paulify OS 😺
+    """
+    print(cat)
+
 
 def run_shell():
-    print("Paulify OS Simulation Shell v1.1")
-    print("Type 'help' to see available commands. Type 'exit' to quit.\n")
-
     cwd = "/"
+    history = []
+    user = {"name": "guest", "root": False}
+    start_time = time.time()
+    print("Welcome to Paulify OS!")
+    intro_tour()
     while True:
         try:
-            cmd = input(get_prompt(cwd))
-            if not cmd.strip():
+            cmd = input(f"{user['name']}:{cwd}$ ").strip()
+            if not cmd:
                 continue
-            result = handle_command(cmd.strip(), cwd)
-            if isinstance(result, tuple):
-                cwd, output = result
-                if output:
-                    print(output)
-            else:
-                print(result)
-        except (KeyboardInterrupt, EOFError):
-            print("\nExiting Paulify OS.")
-            break
+            if cmd == "exit":
+                break
+            history.append(cmd)
+
+            output = handle_music_commands(cmd)
+            if output: print(output); continue
+            output = handle_recovery(cmd, user)
+            if output: print(output); continue
+            output = handle_command(cmd, cwd, history, user, start_time)
+            if output: print(output)
+            continue
+                print(output)
+        except KeyboardInterrupt:
+            print("\nUse 'exit' to quit.")
